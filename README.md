@@ -16,7 +16,7 @@ This repository contains a shell script that deletes all public and private repo
 1. Clone this repository:
 
     ```bash
-    git clone https://github.com/your-username/auto-repo-deleter.git
+    git clone https://github.com/ArunkumarSelvaraj-M/user-repo-auto-cleanup-script.git
     cd auto-repo-deleter
     ```
 
