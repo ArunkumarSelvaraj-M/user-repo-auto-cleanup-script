@@ -7,10 +7,10 @@ GITHUB_USERNAME="<ENTER YOUR USERNAME>"
 TOKEN="<ENTER YOUR TOKEN>"
 
 # Get the names of all your PUBLIC repositories on your Github account
-public_repos=$(curl -s "https://api.github.com/users/$GITHUB_USERNAME/repos?per_page=100&page=1" | jq -r '.[] | select(.owner.login == "'$GITHUB_USERNAME'") | .full_name')
+public_repos=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?visibility=public&affiliation=owner" | jq -r '.[].full_name')
 
 # Get the names of all your PRIVATE repositories on your Github account
-private_repos=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?visibility=private" | jq -r '.[] | select(.owner.login == "'$GITHUB_USERNAME'") | .full_name')
+private_repos=$(curl -s -H "Authorization: token $TOKEN" "https://api.github.com/user/repos?visibility=private&affiliation=owner" | jq -r '.[].full_name')
 
 # Combine public and private repos into a single list
 all_repos=$(echo -e "$public_repos\n$private_repos")
